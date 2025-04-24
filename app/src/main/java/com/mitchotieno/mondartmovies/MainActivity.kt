@@ -1,0 +1,78 @@
+package com.mitchotieno.mondartmovies
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+
+class MainActivity : ComponentActivity() {
+
+    var myStr: String? = null
+
+    @SuppressLint("MissingInflatedId")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val myRec: RecyclerView = findViewById(R.id.myRecycle)
+        myRec.layoutManager = LinearLayoutManager(this)
+
+        val myScope = CoroutineScope(Dispatchers.IO)
+
+        myScope.launch {
+            //var myStr = retrieveData("https://jsonplaceholder.typicode.com/todos/1")
+            myStr = retrieveData("https://mitch-codes.github.io/movie.json")
+            Log.i("result is", myStr)
+        }
+        
+        val data = ArrayList<Item>()
+        for (i in 1..30) {
+            data.add(Item(R.drawable.ic_launcher_foreground,"spork","fluke"))
+        }
+        val adapter = Adapter(data)
+        myRec.adapter = adapter
+
+    }
+    suspend fun retrieveData(urlString: String): String = withContext(Dispatchers.IO){
+        var connection: HttpURLConnection? = null
+
+        try {
+            val url = URL(urlString)
+            connection = url.openConnection() as HttpURLConnection
+            connection.requestMethod = "GET"
+            connection.connect()
+
+            val responseCode = connection.responseCode
+            if (responseCode != HttpURLConnection.HTTP_OK) {
+                throw IOException("HTTP ERROR: $responseCode")
+            }
+            val reader = BufferedReader(InputStreamReader(connection.inputStream))
+            val response = StringBuilder()
+            var line: String?
+
+            while(reader.readLine().also { line = it } != null) {
+                response.append(line)
+            }
+            return@withContext response.toString()
+        }
+        catch(e: IOException){
+            Log.e("http error", "error: $e")
+            throw e
+        }
+        finally {
+            connection?.disconnect()
+        }
+
+    }
+}
