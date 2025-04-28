@@ -1,6 +1,7 @@
 package com.mitchotieno.mondartmovies
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -21,51 +22,44 @@ import java.net.URL
 
 class MainActivity : ComponentActivity() {
 
-    var myStr: String? = null
     var titleList: ArrayList<String> = ArrayList<String>()
     var yearList: ArrayList<String> = ArrayList<String>()
     var imgList: ArrayList<String> = ArrayList<String>()
+    var myStr: String? = "initial"
+    var finalStr: String? = null
+    lateinit var myRec: RecyclerView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val myRec: RecyclerView = findViewById(R.id.myRecycle)
-        myRec.layoutManager = LinearLayoutManager(this)
-
         val myScope = CoroutineScope(Dispatchers.IO)
 
         myScope.launch {
-            //var myStr = retrieveData("https://jsonplaceholder.typicode.com/todos/1")
             myStr = retrieveData("https://mitch-codes.github.io/movie.json")
-            Log.i("result is", myStr.toString())
+            createRec(myStr.toString())
         }
 
-        var myJson = JSONObject(myStr)
-        val myJsonArray = myJson.get("reviews") as JSONArray
-        if (myJsonArray != null) {
+        Thread.sleep(7000)
+        Log.i("RESULT HOPE", finalStr.toString())
+        myRec = findViewById(R.id.myRecycle)
+        myRec.layoutManager = LinearLayoutManager(this)
 
-            for (k in 0..4) {
-                val myMov: JSONObject = myJsonArray[k] as JSONObject
-                titleList.add(myMov.get("name").toString())
-                yearList.add(myMov.get("type").toString())
-                imgList.add(myMov.get("backdrop1").toString())
 
-            }
-        }
-        else {
-            Toast.makeText(applicationContext, "failed", Toast.LENGTH_LONG).show()
-        }
-        
+
+
         val data = ArrayList<Item>()
-        for (i in 0 until titleList.size) {
-            data.add(Item(R.drawable.ic_launcher_foreground,titleList[i],yearList[i]))
+        for (i in 0..10) {
+            data.add(Item(R.drawable.ic_launcher_foreground,"titleList[i]","yearList[i]"))
         }
         val adapter = Adapter(data)
         myRec.adapter = adapter
 
     }
+
+
+    //suspend fun retrieveData(urlString: String): String = withContext(Dispatchers.IO){
     suspend fun retrieveData(urlString: String): String = withContext(Dispatchers.IO){
         var connection: HttpURLConnection? = null
 
@@ -95,6 +89,24 @@ class MainActivity : ComponentActivity() {
         finally {
             connection?.disconnect()
         }
+
+    }
+
+    fun createRec(myStr2: String) {
+        //var myJson = JSONObject(myStr2)
+        //var myJsonArray = myJson.get("reviews")
+
+        Log.i("Hope", myStr2)
+        finalStr = myStr2
+
+
+            /**for (k in 0..4) {
+                val myMov = myJsonArray.get(k) as JSONObject
+                titleList.add(myMov.get("name").toString())
+                yearList.add(myMov.get("type").toString())
+                imgList.add(myMov.get("backdrop1").toString())
+
+            }**/
 
     }
 }
