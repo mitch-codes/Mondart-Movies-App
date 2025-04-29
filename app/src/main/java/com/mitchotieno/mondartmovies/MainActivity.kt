@@ -45,12 +45,34 @@ class MainActivity : ComponentActivity() {
         Log.i("RESULT HOPE", finalStr.toString())
         myRec = findViewById(R.id.myRecycle)
         myRec.layoutManager = LinearLayoutManager(this)
+        var myJson = JSONObject(finalStr)
+        var myJsonArray: JSONArray = myJson.get("reviews") as JSONArray
+        println("BELIEVE IT" + myJsonArray::class.simpleName)
 
+        for (k in 0..2) {
+            var indArray: JSONObject = myJsonArray[k] as JSONObject
+            var backdrop = indArray.get("backdrop1")
+            println("think of the children" + backdrop + backdrop::class.simpleName)
+        }
+/**
+        try {
+            for (k in 0..4) {
+                var myMov = myJsonArray.getJSONObject(k)
+                titleList.add(myMov.get("name").toString())
+                yearList.add(myMov.get("type").toString())
+                imgList.add(myMov.get("backdrop1").toString())
 
+            }
+        }
+        catch(e: Exception) {
+            Log.e("JSON FAILED","couldn't find valid JSON")
+            e.printStackTrace()
+        }
+        **/
 
 
         val data = ArrayList<Item>()
-        for (i in 0..10) {
+        for (i in 0..4) {
             data.add(Item(R.drawable.ic_launcher_foreground,"titleList[i]","yearList[i]"))
         }
         val adapter = Adapter(data)
