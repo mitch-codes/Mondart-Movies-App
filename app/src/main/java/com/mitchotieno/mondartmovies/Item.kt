@@ -1,7 +1,7 @@
 package com.mitchotieno.mondartmovies
 
 data class Item(
-    val img: Int,
+    val img: String,
     val mTitle: String,
     val mDesc: String
 )

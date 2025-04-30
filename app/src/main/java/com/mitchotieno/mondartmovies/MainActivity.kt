@@ -49,9 +49,17 @@ class MainActivity : ComponentActivity() {
         var myJsonArray: JSONArray = myJson.get("reviews") as JSONArray
         println("BELIEVE IT" + myJsonArray::class.simpleName)
 
-        for (k in 0..2) {
+
+
+        for ( k in 0..22) {
             var indArray: JSONObject = myJsonArray[k] as JSONObject
             var backdrop = indArray.get("backdrop1")
+            var movName = indArray.get("name")
+            var movType = indArray.get("type")
+            titleList.add(movName.toString())
+            yearList.add(movType.toString())
+            imgList.add(backdrop.toString())
+
             println("think of the children" + backdrop + backdrop::class.simpleName)
         }
 /**
@@ -73,7 +81,7 @@ class MainActivity : ComponentActivity() {
 
         val data = ArrayList<Item>()
         for (i in 0..4) {
-            data.add(Item(R.drawable.ic_launcher_foreground,"titleList[i]","yearList[i]"))
+            data.add(Item(imgList[i], titleList[i] , yearList[i]))
         }
         val adapter = Adapter(data)
         myRec.adapter = adapter
