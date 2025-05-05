@@ -83,8 +83,11 @@ class MainActivity : ComponentActivity() {
         for (i in 0..4) {
             data.add(Item(imgList[i], titleList[i] , yearList[i]))
         }
-        val adapter = Adapter(data)
+
+
+        val adapter = Adapter(this, data)
         myRec.adapter = adapter
+
 
     }
 
