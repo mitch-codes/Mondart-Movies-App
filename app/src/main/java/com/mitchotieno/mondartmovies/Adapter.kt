@@ -20,7 +20,7 @@ class Adapter(private val context: Context, private val list: List<Item>) : Recy
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_view_design, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, list, context)
 
     }
 
@@ -32,25 +32,38 @@ class Adapter(private val context: Context, private val list: List<Item>) : Recy
         holder.textView1.setText(item.mTitle)
         holder.textView.setText(item.mDesc)
 
-        holder.itemView.setOnClickListener {
+        /**
+         * holder.itemView.setOnClickListener {
             Toast.makeText(context,"you clicked" + position.toString(), Toast.LENGTH_LONG).show()
+
         }
+        **/
 
     }
     override fun getItemCount(): Int {
         return list.size
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, list: List<Item>, context: Context) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val textView1: TextView = itemView.findViewById(R.id.textView2)
         val textView: TextView = itemView.findViewById(R.id.textView)
 
+        init {
+                itemView.setOnClickListener {
+                    val position = absoluteAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val intent = Intent(context, MovieActivity::class.java)
+                        context.startActivity(intent)
+                    }
+                }
+        }
 
 
-        val movHold: ConstraintLayout = itemView.findViewById(R.id.movHold)
+        //val movHold: ConstraintLayout = itemView.findViewById(R.id.movHold)
 
 
 
     }
 }
+
