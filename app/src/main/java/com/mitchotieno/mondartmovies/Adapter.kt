@@ -54,6 +54,12 @@ class Adapter(private val context: Context, private val list: List<Item>) : Recy
                     val position = absoluteAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {
                         val intent = Intent(context, MovieActivity::class.java)
+                        var myMovTitle = list[position].mTitle
+                        var myMovImg = list[position].img
+                        var myMovDesc = list[position].mSum
+                        intent.putExtra("myMovTitle", myMovTitle)
+                        intent.putExtra("myMovImg", myMovImg)
+                        intent.putExtra("myMovDesc", myMovDesc)
                         context.startActivity(intent)
                     }
                 }

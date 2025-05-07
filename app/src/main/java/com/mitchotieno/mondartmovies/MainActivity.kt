@@ -25,6 +25,7 @@ class MainActivity : ComponentActivity() {
     var titleList: ArrayList<String> = ArrayList<String>()
     var yearList: ArrayList<String> = ArrayList<String>()
     var imgList: ArrayList<String> = ArrayList<String>()
+    var descList: ArrayList<String> = ArrayList<String>()
     var myStr: String? = "initial"
     var finalStr: String? = null
     lateinit var myRec: RecyclerView
@@ -56,9 +57,11 @@ class MainActivity : ComponentActivity() {
             var backdrop = indArray.get("backdrop1")
             var movName = indArray.get("name")
             var movType = indArray.get("type")
+            var movDescr = indArray.get("summary")
             titleList.add(movName.toString())
             yearList.add(movType.toString())
             imgList.add(backdrop.toString())
+            descList.add(movDescr.toString())
 
             println("think of the children" + backdrop + backdrop::class.simpleName)
         }
@@ -81,7 +84,7 @@ class MainActivity : ComponentActivity() {
 
         val data = ArrayList<Item>()
         for (i in 0..4) {
-            data.add(Item(imgList[i], titleList[i] , yearList[i]))
+            data.add(Item(imgList[i], titleList[i] , yearList[i], descList[i]))
         }
 
 

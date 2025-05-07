@@ -1,7 +1,9 @@
 package com.mitchotieno.mondartmovies
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.webkit.WebView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,12 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_movie)
+
+        var intent: Intent = intent
+        var myMovTitle = intent.getStringExtra("myMovTitle")
+        var myMovImg = intent.getStringExtra("myMovImg")
+        var myMovDesc = intent.getStringExtra("myMovDesc")
+        Log.i("MOVIE TITLE", myMovTitle.toString())
 
         var htmlString: String = "<html>\n" +
                 "<head>\n" +
@@ -48,49 +56,10 @@ class MovieActivity : AppCompatActivity() {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "    <img src=\"https://image.tmdb.org/t/p/original/eU3pww92aHBTBPRIBMGRS1KceEm.jpg\">\n" +
+                "    <img src=\"$myMovImg\">\n" +
                 "    <!--additional cover-->\n" +
                 "    <div class =\"buffer\">\n" +
-                "<h3>Avatar: The Last Airbender (2024) - A Live-Action Journey Filled with Potential and Pitfalls</h3> \n" +
-                "<p>\n" +
-                "    Netflix's 2024 live-action adaptation of Avatar: The Last Airbender \n" +
-                "    was a highly anticipated project, aiming to capture the magic of the beloved \n" +
-                "    animated series for a new generation. While it succeeds in some aspects, \n" +
-                "    the show ultimately stumbles in others, leaving a mixed impression.\n" +
-                "</p> \n" +
-                "<p>\n" +
-                "    <b>Story:</b> \n" +
-                "    The core narrative of Aang, Katara, and Sokka's journey remains faithful to the original. \n" +
-                "    However, the pacing feels uneven at times, with certain parts rushing through key moments and others \n" +
-                "    dragging. Some creative liberties are taken, with some plot points feeling underdeveloped or \n" +
-                "    lacking the emotional impact of the source material.\n" +
-                "</p> \n" +
-                "<p>\n" +
-                "    <b>Characters:</b>\n" +
-                "    The young cast breathes life into the iconic characters, with particular praise going to Katara and \n" +
-                "    Sokka's performances. However, Aang, the central protagonist, occasionally struggles to capture the \n" +
-                "    same playful charm and emotional depth as his animated counterpart. The supporting characters, \n" +
-                "    while present, don't receive the same level of development, leaving them feeling slightly one-dimensional.\n" +
-                "</p> \n" +
-                "<p>\n" +
-                "    <b>Visual Effects:</b> \n" +
-                "    The series boasts impressive visuals, particularly in showcasing the bending styles. \n" +
-                "    The vast landscapes and fantastical creatures are brought to life with a blend of practical \n" +
-                "    effects and CGI. However, some CGI elements, especially in earlier episodes, appear less polished, \n" +
-                "    detracting from the overall immersion.</p> <p><b>Acting:</b> The young actors deliver sincere \n" +
-                "    performances, capturing the camaraderie and growth of their characters. \n" +
-                "    However, the occasionally clunky dialogue and pacing can hinder their ability \n" +
-                "    to fully display their range. The more seasoned actors bring gravitas to their roles, \n" +
-                "    with Ozai, the main antagonist, delivering a particularly chilling performance.\n" +
-                "</p> \n" +
-                "<p>\n" +
-                "    <b>Overall: </b>\n" +
-                "    Avatar: The Last Airbender (2024) is a valiant attempt to translate a beloved animated series \n" +
-                "    into a live-action format. While it succeeds in replicating the core story and world-building, \n" +
-                "    its execution is uneven, with some elements falling short of the original's magic. The show remains \n" +
-                "    an enjoyable watch for newcomers to the world of Avatar, but dedicated fans might find it lacking \n" +
-                "    the emotional resonance and charm of the animated classic.\n" +
-                "</p>\n" +
+                "$myMovDesc"+
                 "</div>\n" +
                 "</body>\n" +
                 "</html>"
