@@ -50,9 +50,10 @@ class MainActivity : ComponentActivity() {
         var myJsonArray: JSONArray = myJson.get("reviews") as JSONArray
         println("BELIEVE IT" + myJsonArray::class.simpleName)
 
+        val jsonArraySize = myJsonArray.length() - 1
 
 
-        for ( k in 0..22) {
+        for ( k in 0..jsonArraySize) {
             var indArray: JSONObject = myJsonArray[k] as JSONObject
             var backdrop = indArray.get("backdrop1")
             var movName = indArray.get("name")
@@ -83,7 +84,8 @@ class MainActivity : ComponentActivity() {
 
 
         val data = ArrayList<Item>()
-        for (i in 0..4) {
+        val dataLength = titleList.size - 1
+        for (i in 0..dataLength) {
             data.add(Item(imgList[i], titleList[i] , yearList[i], descList[i]))
         }
 
