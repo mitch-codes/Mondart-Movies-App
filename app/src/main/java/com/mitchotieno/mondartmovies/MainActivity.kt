@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
             createRec(myStr.toString())
         }
 
-        Thread.sleep(7000)
+        Thread.sleep(9000)
         Log.i("RESULT HOPE", finalStr.toString())
         myRec = findViewById(R.id.myRecycle)
         myRec.layoutManager = LinearLayoutManager(this)

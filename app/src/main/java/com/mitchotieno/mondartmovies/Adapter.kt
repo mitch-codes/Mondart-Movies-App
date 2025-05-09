@@ -26,7 +26,7 @@ class Adapter(private val context: Context, private val list: List<Item>) : Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-        Glide.with(holder.imageView.context).load(item.img).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground).into(holder.imageView)
+        Glide.with(holder.imageView.context).load(item.img).placeholder(R.drawable.icon).error(R.drawable.icon).into(holder.imageView)
         //Picasso.get().load(item.img).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground).into(holder.imageView)
         //holder.imageView.setImageResource(R.drawable.ic_launcher_background)
         holder.textView1.setText(item.mTitle)
