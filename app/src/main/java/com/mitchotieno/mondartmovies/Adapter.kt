@@ -46,7 +46,7 @@ class Adapter(private val context: Context, private val list: List<Item>) : Recy
 
     class ViewHolder(view: View, list: List<Item>, context: Context) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
-        val textView1: TextView = itemView.findViewById(R.id.textView2)
+        val textView1: TextView = itemView.findViewById(R.id.textView4)
         val textView: TextView = itemView.findViewById(R.id.textView)
 
         init {

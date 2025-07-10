@@ -32,7 +32,6 @@ class MainActivity : ComponentActivity() {
     var finalStr: String? = null
     lateinit var myRec: RecyclerView
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
         val myScope = CoroutineScope(Dispatchers.IO)
 
-        myScope.async{
+        myScope.launch{
             myStr = retrieveData("https://mitch-codes.github.io/movie.json")
             createRec(myStr.toString())
         }
