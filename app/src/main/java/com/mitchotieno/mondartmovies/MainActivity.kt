@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
@@ -35,14 +37,24 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         val myScope = CoroutineScope(Dispatchers.IO)
 
-        myScope.launch {
+        myScope.async{
             myStr = retrieveData("https://mitch-codes.github.io/movie.json")
             createRec(myStr.toString())
         }
 
         Thread.sleep(9000)
+
+        //window status bar decoration
+        /**
+        val window = window
+        @Suppress("DEPRECATION")
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+*/
+        //back to the show
         Log.i("RESULT HOPE", finalStr.toString())
         myRec = findViewById(R.id.myRecycle)
         myRec.layoutManager = LinearLayoutManager(this)

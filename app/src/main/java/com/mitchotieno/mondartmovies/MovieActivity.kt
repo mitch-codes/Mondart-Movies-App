@@ -24,7 +24,7 @@ class MovieActivity : AppCompatActivity() {
         Log.i("MOVIE TITLE", myMovTitle.toString())
 
         supportActionBar?.title = "$myMovTitle - Mondart Movies"
-        supportActionBar?.setLogo(R.drawable.ic_launcher_foreground)
+        //supportActionBar?.setLogo(R.drawable.icon)
 
         var htmlString: String = "<html>\n" +
                 "<head>\n" +
