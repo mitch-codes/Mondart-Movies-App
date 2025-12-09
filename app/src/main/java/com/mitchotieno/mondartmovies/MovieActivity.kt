@@ -35,7 +35,7 @@ class MovieActivity : AppCompatActivity() {
                 "            padding: 0;\n" +
                 "            font-family: sans-serif;\n" +
                 "            font-size: 18px;\n" +
-                "            background: url(https://images.pexels.com/photos/479453/pexels-photo-479453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);\n" +
+                "            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://images.pexels.com/photos/479453/pexels-photo-479453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);\n" +
                 "            background-position: center;\n" +
                 "            background-size: cover;\n" +
                 "            background-repeat: no-repeat;\n" +
@@ -46,15 +46,12 @@ class MovieActivity : AppCompatActivity() {
                 "        h3 {\n" +
                 "            text-align: center;\n" +
                 "        }\n" +
-                "        p {\n" +
-                "            width: 90%;\n" +
-                "            margin: 15px auto;\n" +
-                "            text-align: justify;\n" +
-                "        }\n" +
                 "        .buffer {\n" +
                 "            padding-top: 20px;\n" +
                 "            display: table;\n" +
-                "            background: rgba(255, 255, 255, 0.8);\n" +
+                "            width: 90%;\n" +
+                "            margin: 15px auto;\n" +
+                "            text-align: justify;\n" +
                 "        }\n" +
                 "    </style>\n" +
                 "</head>\n" +
