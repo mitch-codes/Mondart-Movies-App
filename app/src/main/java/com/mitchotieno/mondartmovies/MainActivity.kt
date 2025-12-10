@@ -64,7 +64,8 @@ class MainActivity : ComponentActivity() {
         val jsonArraySize = myJsonArray.length() - 1
 
 
-        for ( k in 0..jsonArraySize) {
+        //for ( k in 0..jsonArraySize) {
+        for ( k in jsonArraySize downTo 0) {
             var indArray: JSONObject = myJsonArray[k] as JSONObject
             var backdrop = indArray.get("backdrop1")
             var movName = indArray.get("name")
