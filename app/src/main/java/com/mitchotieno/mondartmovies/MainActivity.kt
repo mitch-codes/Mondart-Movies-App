@@ -2,6 +2,7 @@ package com.mitchotieno.mondartmovies
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -35,6 +36,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // In your MainActivity (e.g., in onCreate)
+        fun startChecking() {
+            val serviceIntent = Intent(this, DataCheckService::class.java)
+            startService(serviceIntent)
+        }
 
 
 
