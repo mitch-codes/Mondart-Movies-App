@@ -37,12 +37,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // In your MainActivity (e.g., in onCreate)
-        fun startChecking() {
-            val serviceIntent = Intent(this, DataCheckService::class.java)
-            startService(serviceIntent)
-        }
-
 
 
         val myScope = CoroutineScope(Dispatchers.IO)
